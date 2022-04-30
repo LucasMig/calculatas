@@ -4,10 +4,265 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculata</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Calculatas</title>
   </head>
   <body>
-    <section></section>
-    <section></section>
+    <main>
+      <div class="main_app container grid-2-cols">
+        <div class="section_inputs container grid-2-cols">
+          <div class="section_title_container">
+            <p class="section_title">Informações da parede</p>
+          </div>
+          <div class="wall_card">
+            <p class="box_title">Parede 1</p>
+            <form class="input_fields">
+              <div class="field">
+                <label class="input-name" for="wall-width">Largura (m)</label>
+                <div class="field-measure">
+                  <input
+                    type="number"
+                    id="wall-width-1"
+                    name="wall-width"
+                    placeholder="0"
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <label class="input-name" for="wall-height">Altura (m)</label>
+                <div class="field-measure">
+                  <input
+                    type="number"
+                    id="wall-height-1"
+                    name="wall-height"
+                    placeholder="0"
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <label class="input-name" for="door-qty">Quantas portas?</label>
+                <div class="field-qty">
+                  <button class="btn btn-qty btn-qty-less">-</button>
+                  <input
+                    type="number"
+                    id="door-qty-1"
+                    name="door-qty"
+                    placeholder="0"
+                  />
+                  <button class="btn btn-qty btn-qty-plus">+</button>
+                </div>
+              </div>
+              <div class="field">
+                <label class="input-name" for="window-qty"
+                  >Quantas janelas?</label
+                >
+                <div class="field-qty">
+                  <button class="btn btn-qty btn-qty-less">-</button>
+                  <input
+                    type="number"
+                    id="window-qty-1"
+                    name="window-qty"
+                    placeholder="0"
+                  />
+                  <button class="btn btn-qty btn-qty-plus">+</button>
+                </div>
+              </div>
+            </form>
+            <div class="btn_box">
+              <button type="submit" class="btn btn-submit">Confirmar</button>
+            </div>
+          </div>
+          <div class="wall_card locked">
+            <p class="box_title">Parede 2</p>
+            <form class="input_fields">
+              <div class="field">
+                <label class="input-name" for="wall-width">Largura (m)</label>
+                <div class="field-measure">
+                  <input
+                    type="number"
+                    id="wall-width-2"
+                    name="wall-width"
+                    placeholder="0"
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <label class="input-name" for="wall-height">Altura (m)</label>
+                <div class="field-measure">
+                  <input
+                    type="number"
+                    id="wall-height-2"
+                    name="wall-height"
+                    placeholder="0"
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <label class="input-name" for="door-qty">Quantas portas?</label>
+                <div class="field-qty">
+                  <button class="btn btn-qty btn-qty-less">-</button>
+                  <input
+                    type="number"
+                    id="door-qty-2"
+                    name="door-qty"
+                    placeholder="0"
+                  />
+                  <button class="btn btn-qty btn-qty-plus">+</button>
+                </div>
+              </div>
+              <div class="field">
+                <label class="input-name" for="window-qty"
+                  >Quantas janelas?</label
+                >
+                <div class="field-qty">
+                  <button class="btn btn-qty btn-qty-less">-</button>
+                  <input
+                    type="number"
+                    id="window-qty-2"
+                    name="window-qty"
+                    placeholder="0"
+                  />
+                  <button class="btn btn-qty btn-qty-plus">+</button>
+                </div>
+              </div>
+            </form>
+            <div class="btn_box">
+              <button class="btn btn-back">Voltar</button>
+              <button type="submit" class="btn btn-submit">Confirmar</button>
+            </div>
+          </div>
+          <div class="wall_card locked">
+            <p class="box_title">Parede 3</p>
+            <form class="input_fields">
+              <div class="field">
+                <label class="input-name" for="wall-width">Largura (m)</label>
+                <div class="field-measure">
+                  <input
+                    type="number"
+                    id="wall-width-3"
+                    name="wall-width"
+                    placeholder="0"
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <label class="input-name" for="wall-height">Altura (m)</label>
+                <div class="field-measure">
+                  <input
+                    type="number"
+                    id="wall-height-3"
+                    name="wall-height"
+                    placeholder="0"
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <label class="input-name" for="door-qty">Quantas portas?</label>
+                <div class="field-qty">
+                  <button class="btn btn-qty btn-qty-less">-</button>
+                  <input
+                    type="number"
+                    id="door-qty-3"
+                    name="door-qty"
+                    placeholder="0"
+                  />
+                  <button class="btn btn-qty btn-qty-plus">+</button>
+                </div>
+              </div>
+              <div class="field">
+                <label class="input-name" for="window-qty"
+                  >Quantas janelas?</label
+                >
+                <div class="field-qty">
+                  <button class="btn btn-qty btn-qty-less">-</button>
+                  <input
+                    type="number"
+                    id="window-qty-3"
+                    name="window-qty"
+                    placeholder="0"
+                  />
+                  <button class="btn btn-qty btn-qty-plus">+</button>
+                </div>
+              </div>
+            </form>
+            <div class="btn_box">
+              <button class="btn btn-back">Voltar</button>
+              <button type="submit" class="btn btn-submit">Confirmar</button>
+            </div>
+          </div>
+          <div class="wall_card locked">
+            <p class="box_title">Parede 4</p>
+            <form class="input_fields">
+              <div class="field">
+                <label class="input-name" for="wall-width">Largura (m)</label>
+                <div class="field-measure">
+                  <input
+                    type="number"
+                    id="wall-width-4"
+                    name="wall-width"
+                    placeholder="0"
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <label class="input-name" for="wall-height">Altura (m)</label>
+                <div class="field-measure">
+                  <input
+                    type="number"
+                    id="wall-height-4"
+                    name="wall-height"
+                    placeholder="0"
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <label class="input-name" for="door-qty">Quantas portas?</label>
+                <div class="field-qty">
+                  <button class="btn btn-qty btn-qty-less">-</button>
+                  <input
+                    type="number"
+                    id="door-qty-4"
+                    name="door-qty"
+                    placeholder="0"
+                  />
+                  <button class="btn btn-qty btn-qty-plus">+</button>
+                </div>
+              </div>
+              <div class="field">
+                <label class="input-name" for="window-qty"
+                  >Quantas janelas?</label
+                >
+                <div class="field-qty">
+                  <button class="btn btn-qty btn-qty-less">-</button>
+                  <input
+                    type="number"
+                    id="window-qty-4"
+                    name="window-qty"
+                    placeholder="0"
+                  />
+                  <button class="btn btn-qty btn-qty-plus">+</button>
+                </div>
+              </div>
+            </form>
+            <div class="btn_box">
+              <button class="btn btn-back">Voltar</button>
+              <button type="submit" class="btn btn-submit">Confirmar</button>
+            </div>
+          </div>
+          <div class="calculate_box">
+            <button class="btn btn-calculate btn-disabled">Calcular</button>
+          </div>
+        </div>
+        <div class="vertical_divider"></div>
+        <div class="section_results container">
+          <div class="section_title_container">
+            <p class="section_title">Você precisará de...</p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer"></footer>
   </body>
 </html>
