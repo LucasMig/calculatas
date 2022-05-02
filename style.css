@@ -91,27 +91,38 @@ input::-webkit-inner-spin-button {
   gap: 3.2rem;
 }
 
-.wall_card {
+.card {
   display: flex;
   flex-direction: column;
   background-color: #fff;
 
+  opacity: 50%;
+  pointer-events: none;
+
   padding: 2.4rem;
   border-radius: 8px;
   box-shadow: 0 1.2rem 3.6rem rgba(0, 0, 0, 0.6);
+
+  transition: all 0.3s;
 }
 
-.wall_card.locked {
-  opacity: 50%;
+.card.active {
+  opacity: 100%;
+  pointer-events: all;
+  transform: translateY(-0.4rem);
+}
+
+.card.active .btn_box {
+  display: flex;
+}
+
+.card.completed {
+  opacity: 100%;
   pointer-events: none;
 }
 
-.wall_card.completed {
-  opacity: 100%;
-}
-
-.wall_card.locked .btn_box,
-.wall_card.completed .btn_box {
+.card .btn_box,
+.card.completed .btn_box {
   display: none;
 }
 
@@ -128,6 +139,7 @@ input::-webkit-inner-spin-button {
 }
 
 .field input {
+  color: #333;
   padding: 0.6rem;
   text-align: center;
   width: 100%;
@@ -164,9 +176,9 @@ input::-webkit-inner-spin-button {
   gap: 0.4rem;
 }
 
-.btn_box {
+/* .btn_box {
   display: flex;
-}
+} */
 
 .btn-back,
 .btn-back:link,
@@ -199,7 +211,7 @@ input::-webkit-inner-spin-button {
 }
 
 .btn-calculate.btn-disabled {
-  background-color: #999;
+  opacity: 50%;
   pointer-events: none;
 }
 
@@ -215,4 +227,30 @@ input::-webkit-inner-spin-button {
 /* RESULTS SECTION */
 .section_results {
   padding: 2.4rem 0;
+  gap: 3.2rem;
+}
+
+.card_img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-can {
+  filter: grayscale(100%);
+}
+
+.card-can.active {
+  filter: none;
+}
+
+.liters {
+  padding: 0.4rem 0.8rem;
+  background-color: rgba(255, 255, 255, 0.51);
+  border-radius: 8px;
+}
+
+.qty {
+  padding: 0.4rem 0.6rem;
+  background-color: #eb9090;
+  border-radius: 8px;
 }
