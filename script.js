@@ -8,15 +8,17 @@ const doorFieldsAll = Array.from(document.querySelectorAll(".door-qty"));
 const windowFieldsAll = Array.from(document.querySelectorAll(".window-qty"));
 
 //Buttons
-const btnLessAll = Array.from(document.querySelectorAll(".btn-qty-less"));
-const btnPlusAll = Array.from(document.querySelectorAll(".btn-qty-plus"));
+const btnLessAllDoors = Array.from(document.querySelectorAll(".less-door"));
+const btnPlusAllDoors = Array.from(document.querySelectorAll(".plus-door"));
+const btnLessAllWindows = Array.from(document.querySelectorAll(".less-window"));
+const btnPlusAllWindows = Array.from(document.querySelectorAll(".plus-window"));
 const submitters = Array.from(document.querySelectorAll(".btn-submit"));
 const cancellers = Array.from(document.querySelectorAll(".btn-back"));
 
 //EVENT LISTENERS
 
 //Making plus and less buttons work
-btnLessAll.forEach((btn, i) =>
+btnLessAllDoors.forEach((btn, i) =>
   btn.addEventListener("click", function (e) {
     e.preventDefault();
 
@@ -26,10 +28,28 @@ btnLessAll.forEach((btn, i) =>
   })
 );
 
-btnPlusAll.forEach((btn, i) =>
+btnPlusAllDoors.forEach((btn, i) =>
   btn.addEventListener("click", function (e) {
     e.preventDefault();
 
     doorFieldsAll[i].value = +doorFieldsAll[i].value + 1;
+  })
+);
+
+btnLessAllWindows.forEach((btn, i) =>
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    if (windowFieldsAll[i].value > 0) {
+      windowFieldsAll[i].value = +windowFieldsAll[i].value - 1;
+    }
+  })
+);
+
+btnPlusAllWindows.forEach((btn, i) =>
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    windowFieldsAll[i].value = +windowFieldsAll[i].value + 1;
   })
 );
