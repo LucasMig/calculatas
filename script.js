@@ -135,7 +135,7 @@ submitters.forEach((btn, i) =>
 cancellers.forEach((btn, i) =>
   btn.addEventListener("click", function (e) {
     e.preventDefault();
-
+    wallAreas.pop();
     const curCard = wallCards[i + 1];
     const prevCard = curCard.previousElementSibling;
     switchCard(curCard, prevCard);
