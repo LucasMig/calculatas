@@ -20,11 +20,28 @@ const cancellers = Array.from(document.querySelectorAll(".btn-back"));
 
 const wallAreas = [];
 
+const defaultWindow = {
+  width: 2,
+  height: 1.2,
+};
+
+const defaultDoor = {
+  width: 0.8,
+  height: 1.9,
+};
+
 //EVENT LISTENERS
 
 //Functions
 const calcArea = function (width, height) {
   return width * height;
+};
+
+const nextCard = function (curCard, curArea) {
+  wallAreas.push(curArea);
+  curCard.classList.remove("active");
+  curCard.nextElementSibling?.classList.add("active");
+  console.log("funcionou!");
 };
 
 //Making plus and less buttons work
@@ -65,6 +82,9 @@ btnPlusAllWindows.forEach((btn, i) =>
 );
 
 //Making submit buttons work
+const windowArea = calcArea(defaultWindow.width, defaultWindow.height);
+const doorArea = calcArea(defaultDoor.width, defaultDoor.height);
+
 submitters.forEach((btn, i) =>
   btn.addEventListener("click", function (e) {
     e.preventDefault();
@@ -77,13 +97,26 @@ submitters.forEach((btn, i) =>
 
     if (requiredFieldsFullfilled) {
       if ((curWidth > 0) & (curHeight > 0)) {
-        const curArea = calcArea(curWidth, curHeight);
-        const isValid = curArea > 1 && curArea < 15 && true;
+        let curArea = calcArea(curWidth, curHeight);
+        const windowNum = windowFieldsAll[i].value;
+        const doorNum = doorFieldsAll[i].value;
+        const isValid = curArea > 1 && curArea < 16 && true;
 
         if (isValid) {
-          wallAreas.push(curArea);
-          curCard.classList.remove("active");
-          curCard.nextElementSibling.classList.add("active");
+          if (windowNum | doorNum) {
+            const notWall = windowNum * windowArea + doorNum * doorArea;
+
+            if (notWall >= curArea / 2) {
+              console.log(
+                "As portas e janelas não podem representar mais de 50% da parede!"
+              );
+            } else {
+              curArea = curArea - notWall;
+              nextCard(curCard, curArea);
+            }
+          } else {
+            nextCard(curCard, curArea);
+          }
         } else if (curArea > 15) {
           alert("Parede muito grande! Tente diminuir uma das medidas.");
         } else {
