@@ -37,11 +37,9 @@ const calcArea = function (width, height) {
   return width * height;
 };
 
-const nextCard = function (curCard, curArea) {
-  wallAreas.push(curArea);
+const switchCard = function (curCard, targetCard) {
   curCard.classList.remove("active");
-  curCard.nextElementSibling?.classList.add("active");
-  console.log("funcionou!");
+  targetCard.classList.add("active");
 };
 
 //Making plus and less buttons work
@@ -90,6 +88,7 @@ submitters.forEach((btn, i) =>
     e.preventDefault();
 
     const curCard = wallCards[i];
+    const nextCard = curCard.nextElementSibling;
     const curWidth = widthFieldsAll[i].value;
     const curHeight = heightFieldsAll[i].value;
 
@@ -112,10 +111,12 @@ submitters.forEach((btn, i) =>
               );
             } else {
               curArea = curArea - notWall;
-              nextCard(curCard, curArea);
+              wallAreas.push(curArea);
+              switchCard(curCard, nextCard);
             }
           } else {
-            nextCard(curCard, curArea);
+            wallAreas.push(curArea);
+            switchCard(curCard, nextCard);
           }
         } else if (curArea > 15) {
           alert("Parede muito grande! Tente diminuir uma das medidas.");
@@ -128,5 +129,15 @@ submitters.forEach((btn, i) =>
     } else {
       alert("Os campos de altura e largura são obrigatórios!");
     }
+  })
+);
+
+cancellers.forEach((btn, i) =>
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const curCard = wallCards[i + 1];
+    const prevCard = curCard.previousElementSibling;
+    switchCard(curCard, prevCard);
   })
 );
