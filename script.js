@@ -17,6 +17,7 @@ const btnLessAllWindows = Array.from(document.querySelectorAll(".less-window"));
 const btnPlusAllWindows = Array.from(document.querySelectorAll(".plus-window"));
 const submitters = Array.from(document.querySelectorAll(".btn-submit"));
 const cancellers = Array.from(document.querySelectorAll(".btn-back"));
+const calcBtn = document.querySelector(".btn-calculate");
 
 const wallAreas = [];
 
@@ -40,6 +41,13 @@ const calcArea = function (width, height) {
 const switchCard = function (curCard, targetCard) {
   curCard.classList.remove("active");
   targetCard.classList.add("active");
+};
+
+const checkWalls = function () {
+  if (wallAreas.length === 4) {
+    calcBtn.classList.remove("btn-disabled");
+    calcBtn.addEventListener("click", function () {});
+  }
 };
 
 //Making plus and less buttons work
@@ -113,10 +121,12 @@ submitters.forEach((btn, i) =>
               curArea = curArea - notWall;
               wallAreas.push(curArea);
               switchCard(curCard, nextCard);
+              checkWalls();
             }
           } else {
             wallAreas.push(curArea);
             switchCard(curCard, nextCard);
+            checkWalls();
           }
         } else if (curArea > 15) {
           alert("Parede muito grande! Tente diminuir uma das medidas.");
