@@ -1,6 +1,9 @@
 "use strict";
 
 //SELECTING ELEMENTS
+//Containers
+const wallCards = Array.from(document.querySelectorAll(".card-wall"));
+
 //Input fields
 const widthFieldsAll = Array.from(document.querySelectorAll(".wall-width"));
 const heightFieldsAll = Array.from(document.querySelectorAll(".wall-height"));
@@ -15,7 +18,14 @@ const btnPlusAllWindows = Array.from(document.querySelectorAll(".plus-window"));
 const submitters = Array.from(document.querySelectorAll(".btn-submit"));
 const cancellers = Array.from(document.querySelectorAll(".btn-back"));
 
+const wallAreas = [];
+
 //EVENT LISTENERS
+
+//Functions
+const calcArea = function (width, height) {
+  return width * height;
+};
 
 //Making plus and less buttons work
 btnLessAllDoors.forEach((btn, i) =>
@@ -51,5 +61,39 @@ btnPlusAllWindows.forEach((btn, i) =>
     e.preventDefault();
 
     windowFieldsAll[i].value = +windowFieldsAll[i].value + 1;
+  })
+);
+
+//Making submit buttons work
+submitters.forEach((btn, i) =>
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const curCard = wallCards[i];
+    const curWidth = widthFieldsAll[i].value;
+    const curHeight = heightFieldsAll[i].value;
+
+    const requiredFieldsFullfilled = curWidth && curHeight && true;
+
+    if (requiredFieldsFullfilled) {
+      if ((curWidth > 0) & (curHeight > 0)) {
+        const curArea = calcArea(curWidth, curHeight);
+        const isValid = curArea > 1 && curArea < 15 && true;
+
+        if (isValid) {
+          wallAreas.push(curArea);
+          curCard.classList.remove("active");
+          curCard.nextElementSibling.classList.add("active");
+        } else if (curArea > 15) {
+          alert("Parede muito grande! Tente diminuir uma das medidas.");
+        } else {
+          console.log("Parede muito pequena! Tente aumentar uma das medidas.");
+        }
+      } else {
+        alert("a altura e a largura não podem ser zero!");
+      }
+    } else {
+      alert("Os campos de altura e largura são obrigatórios!");
+    }
   })
 );
