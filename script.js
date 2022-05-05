@@ -4,6 +4,7 @@
 //Containers
 const wallCards = Array.from(document.querySelectorAll(".card-wall"));
 const canCards = Array.from(document.querySelectorAll(".card-can"));
+const canQtyAll = Array.from(document.querySelectorAll(".qty"));
 const liters = document.querySelector(".liters");
 
 //Input fields
@@ -150,7 +151,7 @@ cancellers.forEach((btn, i) =>
   })
 );
 
-//Calculating number of cans
+//Calculator
 const largeCan = 18;
 const mediumCan = 3.6;
 const smallCan = 2.5;
@@ -175,8 +176,21 @@ const calcCans = function (area, can) {
   }
 };
 
+//Manipulate can elements to display results
+const displayResults = function () {
+  liters.innerHTML = `${paintNeeded} litros`;
+
+  canCards.forEach((can, i) => {
+    if (cansNeeded[i] > 0) {
+      canQtyAll[i].innerHTML = `x${cansNeeded[i]}`;
+      can.classList.add("active");
+    }
+  });
+};
+
+//Calculating number of cans
 const calcPaint = function () {
-  calcCans(295, largeCan);
+  calcCans(paintNeeded, largeCan);
   calcCans(remainingPaint, mediumCan);
   calcCans(remainingPaint, smallCan);
   calcCans(remainingPaint, tinyCan);
@@ -188,10 +202,8 @@ const calcPaint = function () {
       cansNeeded[2]++;
     }
   }
+  displayResults();
 };
-
-calcPaint();
-console.log(cansNeeded, remainingPaint);
 
 const checkWalls = function () {
   if (wallAreas.length === 4) {
@@ -203,5 +215,3 @@ const checkWalls = function () {
     });
   }
 };
-
-//Manipulating can elements to display results
