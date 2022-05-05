@@ -3,6 +3,8 @@
 //SELECTING ELEMENTS
 //Containers
 const wallCards = Array.from(document.querySelectorAll(".card-wall"));
+const canCards = Array.from(document.querySelectorAll(".card-can"));
+const liters = document.querySelector(".liters");
 
 //Input fields
 const widthFieldsAll = Array.from(document.querySelectorAll(".wall-width"));
@@ -19,7 +21,9 @@ const submitters = Array.from(document.querySelectorAll(".btn-submit"));
 const cancellers = Array.from(document.querySelectorAll(".btn-back"));
 const calcBtn = document.querySelector(".btn-calculate");
 
+//Other elements
 const wallAreas = [];
+const cansNeeded = [];
 
 const defaultWindow = {
   width: 2,
@@ -41,13 +45,6 @@ const calcArea = function (width, height) {
 const switchCard = function (curCard, targetCard) {
   curCard.classList.remove("active");
   targetCard.classList.add("active");
-};
-
-const checkWalls = function () {
-  if (wallAreas.length === 4) {
-    calcBtn.classList.remove("btn-disabled");
-    calcBtn.addEventListener("click", function () {});
-  }
 };
 
 //Making plus and less buttons work
@@ -142,6 +139,7 @@ submitters.forEach((btn, i) =>
   })
 );
 
+//Making back buttons work
 cancellers.forEach((btn, i) =>
   btn.addEventListener("click", function (e) {
     e.preventDefault();
@@ -151,3 +149,59 @@ cancellers.forEach((btn, i) =>
     switchCard(curCard, prevCard);
   })
 );
+
+//Calculating number of cans
+const largeCan = 18;
+const mediumCan = 3.6;
+const smallCan = 2.5;
+const tinyCan = 0.5;
+let paintNeeded;
+let remainingPaint;
+
+const calcCans = function (area, can) {
+  const isEven = area % can === 0;
+  let numCans = area / can;
+
+  if (isEven) {
+    cansNeeded.push(numCans);
+    remainingPaint = 0;
+  } else if (numCans > 1) {
+    numCans = Math.floor(numCans);
+    cansNeeded.push(numCans);
+    remainingPaint = Number(area - numCans * can).toFixed(2);
+  } else if ((numCans > 0) & (numCans < 1)) {
+    cansNeeded.push(0);
+    remainingPaint = Number(area).toFixed(2);
+  }
+};
+
+const calcPaint = function () {
+  calcCans(295, largeCan);
+  calcCans(remainingPaint, mediumCan);
+  calcCans(remainingPaint, smallCan);
+  calcCans(remainingPaint, tinyCan);
+  if (remainingPaint > 0) {
+    cansNeeded[3]++;
+
+    if (cansNeeded[3] === 5) {
+      cansNeeded[3] = 0;
+      cansNeeded[2]++;
+    }
+  }
+};
+
+calcPaint();
+console.log(cansNeeded, remainingPaint);
+
+const checkWalls = function () {
+  if (wallAreas.length === 4) {
+    calcBtn.classList.remove("btn-disabled");
+    calcBtn.addEventListener("click", function () {
+      const fullArea = wallAreas.reduce((acc, cur) => acc + cur, 0);
+      paintNeeded = fullArea / 5;
+      calcPaint();
+    });
+  }
+};
+
+//Manipulating can elements to display results
