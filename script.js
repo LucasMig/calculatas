@@ -23,11 +23,12 @@ const btnPlusAllWindows = Array.from(document.querySelectorAll(".plus-window"));
 const submitters = Array.from(document.querySelectorAll(".btn-submit"));
 const cancellers = Array.from(document.querySelectorAll(".btn-back"));
 const calcBtn = document.querySelector(".btn-calculate");
+const resetBtn = document.querySelector(".btn-reset");
 const closeError = document.querySelector(".btn-ok");
 
 //Other elements
-const wallAreas = [];
-const cansNeeded = [];
+let wallAreas = [];
+let cansNeeded = [];
 
 const defaultWindow = {
   width: 2,
@@ -62,6 +63,40 @@ const switchCard = function (curCard, targetCard) {
 const displayError = function (error) {
   errorCard.classList.remove("hidden");
   errorMessage.innerHTML = error;
+};
+
+const resetInputs = function (elements) {
+  elements.forEach((el) => (el.value = ""));
+};
+
+const setDefault = function () {
+  wallAreas = [];
+  cansNeeded = [];
+  remainingPaint = 0;
+
+  wallCards.forEach((card) => card.classList.remove("completed"));
+  wallCards[0].classList.add("active");
+
+  calcBtn.classList.add("btn-disabled");
+
+  canCards.forEach((card) => card.classList.remove("active"));
+
+  canQtyAll.forEach((can) => (can.innerHTML = `x0`));
+
+  liters.innerHTML = "alguma";
+
+  resetInputs(widthFieldsAll);
+  resetInputs(heightFieldsAll);
+  resetInputs(doorFieldsAll);
+  resetInputs(windowFieldsAll);
+};
+
+const calcManager = function () {
+  const fullArea = wallAreas.reduce((acc, cur) => acc + cur, 0);
+  paintNeeded = Number(fullArea / 5).toFixed(1);
+  calcPaint();
+  displayReset();
+  calcBtn.removeEventListener("click", calcManager);
 };
 
 //Making plus and less buttons work
@@ -211,6 +246,19 @@ const displayResults = function () {
   });
 };
 
+//Display reset button to reset calculator to default state
+const displayReset = function () {
+  calcBtn.classList.toggle("hidden");
+  resetBtn.classList.toggle("hidden");
+};
+
+resetBtn.addEventListener("click", function () {
+  calcBtn.classList.toggle("hidden");
+  resetBtn.classList.toggle("hidden");
+
+  setDefault();
+});
+
 //Calculating number of cans
 const calcPaint = function () {
   calcCans(paintNeeded, largeCan);
@@ -231,10 +279,6 @@ const calcPaint = function () {
 const checkWalls = function () {
   if (wallAreas.length === 4) {
     calcBtn.classList.remove("btn-disabled");
-    calcBtn.addEventListener("click", function () {
-      const fullArea = wallAreas.reduce((acc, cur) => acc + cur, 0);
-      paintNeeded = Number(fullArea / 5).toFixed(1);
-      calcPaint();
-    });
+    calcBtn.addEventListener("click", calcManager);
   }
 };

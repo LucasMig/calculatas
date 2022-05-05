@@ -207,7 +207,22 @@ input::-webkit-inner-spin-button {
 .btn-calculate {
   width: 50%;
   height: 4.4rem;
-  background-color: gr;
+}
+
+.btn-reset,
+.btn-reset:link,
+.btn-reset:visited {
+  width: 50%;
+  height: 4.4rem;
+  box-shadow: inset 0 0 0 1px #90b0eb;
+  background-color: #fff;
+  color: #6494ed;
+}
+
+.btn-reset:hover,
+.btn-reset:active {
+  background-color: #6494ed;
+  color: #fff;
 }
 
 .btn-calculate.btn-disabled {
