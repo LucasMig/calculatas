@@ -6,6 +6,8 @@ const wallCards = Array.from(document.querySelectorAll(".card-wall"));
 const canCards = Array.from(document.querySelectorAll(".card-can"));
 const canQtyAll = Array.from(document.querySelectorAll(".qty"));
 const liters = document.querySelector(".liters");
+const errorCard = document.querySelector(".error_message");
+const errorMessage = document.querySelector(".message_body");
 
 //Input fields
 const widthFieldsAll = Array.from(document.querySelectorAll(".wall-width"));
@@ -21,6 +23,7 @@ const btnPlusAllWindows = Array.from(document.querySelectorAll(".plus-window"));
 const submitters = Array.from(document.querySelectorAll(".btn-submit"));
 const cancellers = Array.from(document.querySelectorAll(".btn-back"));
 const calcBtn = document.querySelector(".btn-calculate");
+const closeError = document.querySelector(".btn-ok");
 
 //Other elements
 const wallAreas = [];
@@ -36,6 +39,14 @@ const defaultDoor = {
   height: 1.9,
 };
 
+const errors = {
+  tooSmall: "Parede muito pequena! Tente aumentar uma das medidas.",
+  tooBig: "Parede muito grande! Tente diminuir uma das medidas.",
+  emptyField: "Os campos de altura e largura são obrigatórios!",
+  cantBeZero: "a altura e a largura não podem ser zero!",
+  tooManyDW: "As portas e janelas não podem representar mais de 50% da parede!",
+};
+
 //EVENT LISTENERS
 
 //Functions
@@ -46,6 +57,11 @@ const calcArea = function (width, height) {
 const switchCard = function (curCard, targetCard) {
   curCard.classList.remove("active");
   targetCard.classList.add("active");
+};
+
+const displayError = function (error) {
+  errorCard.classList.remove("hidden");
+  errorMessage.innerHTML = error;
 };
 
 //Making plus and less buttons work
@@ -85,6 +101,12 @@ btnPlusAllWindows.forEach((btn, i) =>
   })
 );
 
+//Making error's close button work
+closeError.addEventListener("click", function (e) {
+  e.preventDefault();
+  errorCard.classList.add("hidden");
+});
+
 //Making submit buttons work
 const windowArea = calcArea(defaultWindow.width, defaultWindow.height);
 const doorArea = calcArea(defaultDoor.width, defaultDoor.height);
@@ -112,30 +134,30 @@ submitters.forEach((btn, i) =>
             const notWall = windowNum * windowArea + doorNum * doorArea;
 
             if (notWall >= curArea / 2) {
-              console.log(
-                "As portas e janelas não podem representar mais de 50% da parede!"
-              );
+              displayError(errors.tooManyDW);
             } else {
               curArea = curArea - notWall;
               wallAreas.push(curArea);
               switchCard(curCard, nextCard);
+              curCard.classList.add("completed");
               checkWalls();
             }
           } else {
             wallAreas.push(curArea);
             switchCard(curCard, nextCard);
+            curCard.classList.add("completed");
             checkWalls();
           }
         } else if (curArea > 15) {
-          alert("Parede muito grande! Tente diminuir uma das medidas.");
+          displayError(errors.tooBig);
         } else {
-          console.log("Parede muito pequena! Tente aumentar uma das medidas.");
+          displayError(errors.tooSmall);
         }
       } else {
-        alert("a altura e a largura não podem ser zero!");
+        displayError(errors.cantBeZero);
       }
     } else {
-      alert("Os campos de altura e largura são obrigatórios!");
+      displayError(errors.emptyField);
     }
   })
 );
@@ -148,6 +170,7 @@ cancellers.forEach((btn, i) =>
     const curCard = wallCards[i + 1];
     const prevCard = curCard.previousElementSibling;
     switchCard(curCard, prevCard);
+    prevCard.classList.remove("completed");
   })
 );
 
