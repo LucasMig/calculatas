@@ -233,7 +233,7 @@ const checkWalls = function () {
     calcBtn.classList.remove("btn-disabled");
     calcBtn.addEventListener("click", function () {
       const fullArea = wallAreas.reduce((acc, cur) => acc + cur, 0);
-      paintNeeded = fullArea / 5;
+      paintNeeded = Number(fullArea / 5).toFixed(1);
       calcPaint();
     });
   }
