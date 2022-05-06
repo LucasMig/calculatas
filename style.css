@@ -81,7 +81,8 @@ input::-webkit-inner-spin-button {
 
 /* MAIN APP CONTAINER */
 .main_app {
-  gap: 9rem;
+  padding: 0 1.6rem;
+  gap: 6rem;
   user-select: none;
 }
 
@@ -311,4 +312,45 @@ input::-webkit-inner-spin-button {
 
 .hidden {
   display: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 82.5em) {
+  html {
+    font-size: 56.25%;
+  }
+}
+
+@media (max-width: 74em) {
+  html {
+    font-size: 50%;
+  }
+}
+
+@media (max-width: 66em) {
+  html {
+    font-size: 43.75%;
+  }
+
+  .main_app {
+    padding: 0;
+  }
+}
+
+@media (max-width: 56.25em) {
+  .main_app.grid-2-cols {
+    grid-template-columns: 1fr;
+    gap: 2.4rem;
+    padding: 0 2.4rem;
+  }
+
+  .vertical_divider {
+    display: none;
+  }
+}
+
+@media (max-width: 30em) {
+  .section_inputs.grid-2-cols {
+    grid-template-columns: 1fr;
+  }
 }
