@@ -10,7 +10,7 @@ Com base na quantidade necessária o sistema deveria apontar tamanhos de lata de
 
 ## Como rodar
 
-O resultado final do projeto está [hospedado aqui]()
+O resultado final do projeto está [hospedado aqui](https://calculatas.netlify.app/)
 
 ### Regras de negócio
 
@@ -27,26 +27,12 @@ O resultado final do projeto está [hospedado aqui]()
    - 3,6 L
    - 18 L
 
-## Requistos técnicos
+## Sobre esse projeto
 
-Você é livre para utilizar qualquer linguagem ou framework que queira e os calculos podem ser resolvidos tanto no backend ou frontend.
-
-Mesmo o teste sendo algo simples e que pode ser resolvido com poucas linhas de código, crie uma estrutura de arquivos como se fosse um projeto maior. A organização e componentização são extremamente importantes.
-
-Torne o projeto fácil de ser executado (crie um passo a passo e/ou utilize docker).
-
-## O que será avaliado
+A aplicação foi criada com HTML, CSS e JavaScript. Aprendi e pratiquei um pouco mais alguns princípios e práticas como:
 
 - Qualidade do código
 - Baixo acoplamento
 - Componentização e reutilização de código
-- Versionamento correto
-- Escalabilidade
-- Testabilidade
 
-## Dicas
-
-- Prefira funções puras
-- Use gitflow e escreva comentários claros e objetivos em cada commit
-- O uso de eslint, editor config, docker, webpack, etc facilitam sua vida
-- Lembre-se do conceito de DRY e aplique
+Além disso, também procurei usar gitflow (no começo do projeto, não sabia nem o que era isso). Acredito que entendi o conceito mas ainda preciso praticar muito!
