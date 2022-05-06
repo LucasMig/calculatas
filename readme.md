@@ -10,7 +10,9 @@ Com base na quantidade necessária o sistema deveria apontar tamanhos de lata de
 
 ## Como rodar
 
-O resultado final do projeto está [hospedado aqui](https://calculatas.netlify.app/)
+O resultado final do projeto está [hospedado aqui](https://calculatas.netlify.app/).
+
+Para testar, basta acessar. =)
 
 ### Regras de negócio
 
